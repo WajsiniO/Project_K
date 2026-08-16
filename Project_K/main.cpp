@@ -1,11 +1,11 @@
-#include "Window.h"
+ï»¿#include "Window.h"
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
+int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow) {
 
 	Window window(L"Moja pierwsza gra", 1280, 720);
 
 	if (!window.Create()) {
-		return -1; //Zwrot b³edu - nie uda³o sie uruchomiæ okna
+		return -1;
 	}
 
 	bool workingWindow = true;
@@ -13,4 +13,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	while (workingWindow) {
 		workingWindow = window.Process();
 	}
+
+	return 0;
 }

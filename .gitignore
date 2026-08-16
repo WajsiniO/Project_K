@@ -1,48 +1,53 @@
-# Prerequisites
-*.d
+﻿# Visual Studio files & folders
+.vs/
+.vscode/
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+*.VC.db
+*.VC.opendb
+*.db
+*.db-shm
+*.db-wal
+*.opendb
+*.ipch
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Linker files
-*.ilk
-
-# Debugger Files
-*.pdb
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-*.so.*
-
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
-
-# Build directories
+# Build output directories
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bin/
+Bin/
+obj/
+Obj/
 build/
 Build/
 build-*/
+
+# Compiled binaries and objects
+*.obj
+*.o
+*.lo
+*.slo
+*.pch
+*.gch
+*.idb
+*.pdb
+*.ilk
+*.lib
+*.exp
+*.exe
+*.dll
+*.so
+*.dylib
+*.tlog
+*.recipe
+*.lastbuildstate
+*.vsidx
 
 # CMake generated files
 CMakeFiles/
@@ -52,18 +57,13 @@ Makefile
 install_manifest.txt
 compile_commands.json
 
-# Temporary files
+# vcpkg & dependencies
+vcpkg_installed/
+
+# Temporary / Cache / Backup files
 *.tmp
 *.log
 *.bak
 *.swp
-
-# vcpkg
-vcpkg_installed/
-
-# debug information files
-*.dwo
-
-# test output & cache
-Testing/
 .cache/
+Testing/
