@@ -2,7 +2,7 @@
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow) {
 
-	Window window(L"Moja pierwsza gra", 1280, 720);
+	Window window(L"Project_K", 1280, 720);
 
 	if (!window.Create()) {
 		return -1;
