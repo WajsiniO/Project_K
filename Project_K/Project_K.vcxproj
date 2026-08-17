@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -123,10 +123,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="MenuPanel.h" />
+    <ClInclude Include="UI_Components.h" />
+    <ClInclude Include="UI_Container.h" />
+    <ClInclude Include="UI_Style.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuPanel.cpp" />
+    <ClCompile Include="UI_Components.cpp" />
+    <ClCompile Include="UI_Container.cpp" />
     <ClCompile Include="Window_Win32.cpp" />
     <ClCompile Include="Window_X11.cpp" />
   </ItemGroup>

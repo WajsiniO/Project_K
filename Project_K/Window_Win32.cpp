@@ -14,7 +14,8 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
 }
 
 Window::Window(const wchar_t* title, int width, int height)
-    : m_title(title), m_width(width), m_height(height), m_hwnd(nullptr), m_hInstance(GetModuleHandle(nullptr)) {
+    : m_title(title), m_width(width), m_height(height), m_hwnd(nullptr), m_hInstance(GetModuleHandle(nullptr)), 
+    m_fullscreen(false), m_savedStyle(0), m_savedPlacement({sizeof(WINDOWPLACEMENT)}) {
 }
 
 Window::~Window() {
@@ -81,4 +82,45 @@ bool Window::Process() {
     }
 
     return true;
+}
+
+void Window::ToggleFullscreen() {
+    SetFullscreen(!m_fullscreen);
+}
+
+void Window::SetFullscreen(bool fullscreen) {
+    if (m_fullscreen == fullscreen) return;
+
+    DWORD currentStyle = GetWindowLong(m_hwnd, GWL_STYLE);
+
+    if (fullscreen) {
+        m_savedPlacement.length = sizeof(WINDOWPLACEMENT);
+        GetWindowPlacement(m_hwnd, &m_savedPlacement);
+        m_savedStyle = currentStyle;
+
+        MONITORINFO mi = { sizeof(MONITORINFO) };
+        HMONITOR hMonitor = MonitorFromWindow(m_hwnd, MONITOR_DEFAULTTOPRIMARY);
+
+        if (GetMonitorInfo(hMonitor, &mi)) {
+            SetWindowLong(m_hwnd, GWL_STYLE, currentStyle & ~WS_OVERLAPPEDWINDOW);
+
+            SetWindowPos(
+                m_hwnd, HWND_TOP,
+                mi.rcMonitor.left, mi.rcMonitor.top, mi.rcMonitor.right - mi.rcMonitor.left, mi.rcMonitor.bottom - mi.rcMonitor.top,
+                SWP_NOOWNERZORDER | SWP_FRAMECHANGED
+            );
+        }
+
+        m_fullscreen = true;
+    } else {
+        SetWindowLong(m_hwnd, GWL_STYLE, m_savedStyle);
+        SetWindowPlacement(m_hwnd, &m_savedPlacement);
+        SetWindowPos(
+            m_hwnd,
+            nullptr,
+            0, 0, 0, 0,
+            SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_FRAMECHANGED
+        );
+        m_fullscreen = false;
+    }
 }
